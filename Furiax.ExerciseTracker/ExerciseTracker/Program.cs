@@ -24,4 +24,4 @@ using (var scope = host.Services.CreateScope())
 	exerciseController.MainMenu();
 }
 
-//test
+//dapper
