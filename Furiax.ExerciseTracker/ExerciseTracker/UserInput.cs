@@ -53,14 +53,14 @@ namespace ExerciseTracker
 				do
 				{
 					exercise.DateStart = AnsiConsole.Confirm($"Do you want to edit the start time ({exercise.DateStart}) ?") ?
-					AnsiConsole.Ask<DateTime>("Enter the new start time: ")
+					AnsiConsole.Ask<DateTime>("Enter the new start time (format yyyy-mm-dd hh:mm): ")
 					: exercise.DateStart;
 				} while (!Validation.IsDateNotInFuture(exercise.DateStart));
 
 				do
 				{
 					exercise.DateEnd = AnsiConsole.Confirm($"Do you want to edit the end time ({exercise.DateEnd})?") ?
-					AnsiConsole.Ask<DateTime>("Enter the new end time: ")
+					AnsiConsole.Ask<DateTime>("Enter the new end time (format yyyy-mm-dd hh:mm): ")
 					: exercise.DateEnd; 
 				} while (!Validation.IsDateNotInFuture(exercise.DateEnd));
 			} while  (!Validation.IsEndDateGreaterThanStartDate(exercise.DateStart, exercise.DateEnd));

@@ -23,3 +23,5 @@ using (var scope = host.Services.CreateScope())
 	var exerciseController = services.GetRequiredService<ExerciseController>();
 	exerciseController.MainMenu();
 }
+
+//test
