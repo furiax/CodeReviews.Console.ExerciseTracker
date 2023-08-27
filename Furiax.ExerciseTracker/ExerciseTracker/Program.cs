@@ -9,7 +9,7 @@ using System.Data;
 var host = new HostBuilder()
 	.ConfigureServices((hostContext, services) =>
 	{
-		services.AddTransient<IDbConnection>(sp => new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Database=ExerciseTracker"));
+		services.AddTransient<IDbConnection>(conn => new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Database=ExerciseTracker"));
 		services.AddTransient<IExerciseRepository, ExerciseRepository>();
 		services.AddTransient<ExerciseService>();
 		services.AddTransient<ExerciseController>();
