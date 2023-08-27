@@ -1,15 +1,15 @@
 ﻿using ExerciseTracker;
 using ExerciseTracker.Repositories;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Data;
 
-
+//dapper version
 var host = new HostBuilder()
 	.ConfigureServices((hostContext, services) =>
 	{
-		services.AddDbContext<ExerciseTrackerContext>(options =>
-			options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Database=ExerciseTracker"));
+		services.AddTransient<IDbConnection>(sp => new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Database=ExerciseTracker"));
 		services.AddTransient<IExerciseRepository, ExerciseRepository>();
 		services.AddTransient<ExerciseService>();
 		services.AddTransient<ExerciseController>();
@@ -19,9 +19,8 @@ var host = new HostBuilder()
 using (var scope = host.Services.CreateScope())
 {
 	var services = scope.ServiceProvider;
-	var context = services.GetRequiredService<ExerciseTrackerContext>();
 	var exerciseController = services.GetRequiredService<ExerciseController>();
+
 	exerciseController.MainMenu();
 }
 
-//dapper
